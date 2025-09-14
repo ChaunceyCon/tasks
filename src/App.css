@@ -15,7 +15,8 @@
 
 .App-header {
     width: 100%;
-    background-color: #282c34;
+    /* background-color: hsl(0, 75%, 49%); */
+    background-color: red;
     min-height: 40vh;
     display: flex;
     flex-direction: column;
@@ -36,4 +37,8 @@
     to {
         transform: rotate(360deg);
     }
+}
+/* Added to try and get background to pass */
+.col.red-background {
+    background-color: red;
 }
