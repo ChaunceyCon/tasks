@@ -5,12 +5,30 @@ import { Question, QuestionType } from "./interfaces/question";
  * `expected` should be empty strings, the `options` should be an empty list, the `points`
  * should default to 1, and `published` should default to false.
  */
+// Og code 1
+// export function makeBlankQuestion(
+//     id: number,
+//     name: string,
+//     type: QuestionType,
+//     // Changed: type: QuestionType
+// ): Question {
+//     return {};
+// }
 export function makeBlankQuestion(
     id: number,
     name: string,
-    type: QuestionType
+    type: "short_answer_question" | "multiple_choice_question",
 ): Question {
-    return {};
+    return {
+        id: id,
+        name: name,
+        body: "",
+        type: type,
+        options: [],
+        expected: "",
+        points: 1,
+        published: false,
+    };
 }
 
 /**
@@ -20,8 +38,13 @@ export function makeBlankQuestion(
  *
  * HINT: Look up the `trim` and `toLowerCase` functions.
  */
+// OG Code 2
+// export function isCorrect(question: Question, answer: string): boolean {
+//     return false;
+// }
+
 export function isCorrect(question: Question, answer: string): boolean {
-    return false;
+    return answer.trim().toLowerCase() === question.expected.toLowerCase();
 }
 
 /**
@@ -30,8 +53,17 @@ export function isCorrect(question: Question, answer: string): boolean {
  * any answer is valid. But for a `multiple_choice_question`, the `answer` must
  * be exactly one of the options.
  */
+
+// OG Code 3
+// export function isValid(question: Question, answer: string): boolean {
+//     return false;
+// }
+
 export function isValid(question: Question, answer: string): boolean {
-    return false;
+    if (question.type === "short_answer_question") {
+        return true;
+    }
+    return question.options.includes(answer);
 }
 
 /**
@@ -40,8 +72,19 @@ export function isValid(question: Question, answer: string): boolean {
  * separated by ": ". So for example, the question with id 9 and the
  * name "My First Question" would become "9: My First Q".
  */
+
+// OG Code 4
+
+// export function toShortForm(question: Question): string {
+//     return "";
+// }
+
 export function toShortForm(question: Question): string {
-    return "";
+    const shortName =
+        question.name.length > 10 ?
+            question.name.substring(0, 10)
+        :   question.name;
+    return `${question.id}: ${shortName}`;
 }
 
 /**
@@ -61,16 +104,38 @@ export function toShortForm(question: Question): string {
  * ------------------------------
  * Check the unit tests for more examples of what this looks like!
  */
+// Og code 5
+
+// export function toMarkdown(question: Question): string {
+//     return "";
+// }
+
 export function toMarkdown(question: Question): string {
-    return "";
+    const header = `# ${question.name}`;
+    const body = question.body;
+    if (question.type === "multiple_choice_question") {
+        const options = question.options.map((opt) => `- ${opt}`).join("\n");
+        return `${header}\n${body}\n${options}`;
+    } else {
+        return `${header}\n${body}`;
+    }
 }
 
 /**
  * Return a new version of the given question, except the name should now be
  * `newName`.
  */
+
+// OG code 6
+// export function renameQuestion(question: Question, newName: string): Question {
+//     return question;
+// }
+
 export function renameQuestion(question: Question, newName: string): Question {
-    return question;
+    return {
+        ...question,
+        name: newName,
+    };
 }
 
 /**
@@ -78,8 +143,18 @@ export function renameQuestion(question: Question, newName: string): Question {
  * should be inverted. If the question was not published, now it should be
  * published; if it was published, now it should be not published.
  */
+
+// OG Code 7
+
+// export function publishQuestion(question: Question): Question {
+//     return question;
+// }
+
 export function publishQuestion(question: Question): Question {
-    return question;
+    return {
+        ...question,
+        published: !question.published,
+    };
 }
 
 /**
@@ -88,8 +163,24 @@ export function publishQuestion(question: Question): Question {
  * over as "Copy of ORIGINAL NAME" (e.g., so "Question 1" would become "Copy of Question 1").
  * The `published` field should be reset to false.
  */
-export function duplicateQuestion(id: number, oldQuestion: Question): Question {
-    return oldQuestion;
+
+// OG code 8
+
+// export function duplicateQuestion(id: number, oldQuestion: Question): Question {
+//     return oldQuestion;
+// }
+
+export function duplicateQuestion(
+    newId: number,
+    oldQuestion: Question,
+): Question {
+    return {
+        ...oldQuestion,
+        id: newId,
+        name: "Copy of " + oldQuestion.name,
+        published: false,
+        options: [...oldQuestion.options],
+    };
 }
 
 /**
@@ -99,8 +190,17 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
  * to the original question's list!
  * Check out the subsection about "Nested Fields" for more information.
  */
+
+// OG code 9
+// export function addOption(question: Question, newOption: string): Question {
+//     return question;
+// }
+
 export function addOption(question: Question, newOption: string): Question {
-    return question;
+    return {
+        ...question,
+        options: [...question.options, newOption],
+    };
 }
 
 /**
@@ -111,11 +211,32 @@ export function addOption(question: Question, newOption: string): Question {
  * Notice that the second Question is provided as just an object with a `points`
  * field; but the function call would be the same as if it were a `Question` type!
  */
+
+// OG code 10:
+// export function mergeQuestion(
+//     id: number,
+//     name: string,
+//     contentQuestion: Question,
+//     { points }: { points: number },
+//     //Changed: { points }: { points: number }
+// ): Question {
+//     return contentQuestion;
+// }
+
 export function mergeQuestion(
     id: number,
     name: string,
     contentQuestion: Question,
-    { points }: { points: number }
+    { points }: { points: number },
 ): Question {
-    return contentQuestion;
+    return {
+        id,
+        name,
+        body: contentQuestion.body,
+        type: contentQuestion.type,
+        options: [...contentQuestion.options],
+        expected: contentQuestion.expected,
+        points,
+        published: false,
+    };
 }
