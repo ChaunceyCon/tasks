@@ -1,48 +1,26 @@
 import React from "react";
 import "./App.css";
-// Added import button from chapter 2 Basic HTML and CSS. I also added on Container, Row, Col, And Image for bootstrap import process.
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
-import dogImage from "./assets/dog.jpg"; //Convert PNG to JPEG
+import { ChangeType } from "./components/ChangeType";
+import { RevealAnswer } from "./components/RevealAnswer";
+import { TwoDice } from "./components/TwoDice";
+import { Counter } from "./components/Counter";
 
 function App(): React.JSX.Element {
     return (
         <div className="App">
-            {/* Was <header className="App-header"> but had to change to h1 due to header test */}
-            {/* <h1 className="App-header">
-                UM COS420 with React Hooks and TypeScript
-            </h1> */}
-            {/* Trying to fix header issue */}
             <header className="App-header">
                 <h1 role="heading">
                     UM COS420 with React Hooks and TypeScript
                 </h1>
             </header>
-            <Container>
-                <Row>
-                    <Col>
-                        <p>
-                            Edit <code>src/App.tsx</code> and save. This page
-                            will automatically reload. Chauncey Hello World
-                        </p>
-                        <Button
-                            onClick={() => {
-                                console.log("Hello World!");
-                            }}
-                        >
-                            Log Hello World
-                        </Button>
-                    </Col>
-                    <Col style={{ backgroundColor: "red" }}>
-                        <p>Second column content.</p>
-                        <Image src={dogImage} alt="My dog Marley" fluid />
-                        <ul>
-                            <li>Dog toy</li>
-                            <li>Dog food</li>
-                            <li>Dog borks</li>
-                        </ul>
-                    </Col>
-                </Row>
-            </Container>
+            <hr />
+            <Counter />
+            <hr />
+            <RevealAnswer />
+            <hr />
+            <TwoDice />
+            <hr />
+            <ChangeType />
         </div>
     );
 }
@@ -50,6 +28,47 @@ function App(): React.JSX.Element {
 export default App;
 
 // Test code:
+
+// Old code 2, orginal updated:
+
+// import React from "react";
+// import "./App.css";
+// import { ChangeType } from "./components/ChangeType";
+// import { RevealAnswer } from "./components/RevealAnswer";
+// import { TwoDice } from "./components/TwoDice";
+// import { Counter } from "./components/Counter";
+// // Added import button from chapter 2 Basic HTML and CSS. I also added on Container, Row, Col, And Image for bootstrap import process.
+// import { Container, Row, Col, Image, Button } from "react-bootstrap";
+// import dogImage from "./assets/dog.jpg"; //Convert PNG to JPEG
+
+// function App(): React.JSX.Element {
+//     return (
+//         <div className="App">
+//             {/* Was <header className="App-header"> but had to change to h1 due to header test */}
+//             {/* <h1 className="App-header">
+//                 UM COS420 with React Hooks and TypeScript
+//             </h1> */}
+//             {/* Trying to fix header issue */}
+//             <header className="App-header">
+//                 <h1 role="heading">
+//                     UM COS420 with React Hooks and TypeScript
+//                 </h1>
+//             </header>
+//             <hr></hr>
+//             <Counter></Counter>
+//             <hr />
+//             <RevealAnswer></RevealAnswer>
+//             <hr />
+//             <TwoDice></TwoDice>
+//             <hr />
+//             <ChangeType></ChangeType>
+//         </div>
+//     );
+// }
+
+// export default App;
+
+// Old code 1
 
 // Old code for reminding:
 
