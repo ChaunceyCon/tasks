@@ -4,6 +4,9 @@ import { ChangeType } from "./components/ChangeType";
 import { RevealAnswer } from "./components/RevealAnswer";
 import { TwoDice } from "./components/TwoDice";
 import { Counter } from "./components/Counter";
+import { DoubleHalf } from "./bad-components/DoubleHalf";
+import { ColoredBox } from "./bad-components/ColoredBox";
+import { ChooseTeam } from "./bad-components/ChooseTeam";
 
 function App(): React.JSX.Element {
     return (
@@ -13,6 +16,13 @@ function App(): React.JSX.Element {
                     UM COS420 with React Hooks and TypeScript
                 </h1>
             </header>
+            <hr></hr>
+            {/* <DoubleHalf></DoubleHalf> */}
+            <hr></hr>
+            <ChooseTeam></ChooseTeam>{" "}
+            {/* There was an merge conflict here for 11/2/2025, reminder for if any issues arise. */}
+            <hr></hr>
+            <ColoredBox></ColoredBox>
             <hr />
             <Counter />
             <hr />
