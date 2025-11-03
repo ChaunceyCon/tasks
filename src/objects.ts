@@ -1,4 +1,6 @@
-import { Question, QuestionType } from "./interfaces/question";
+import { Question } from "./interfaces/question";
+// Testing without "QuestionType"
+// import { Question, QuestionType } from "./interfaces/question";
 
 /**
  * Create a new blank question with the given `id`, `name`, and `type. The `body` and
