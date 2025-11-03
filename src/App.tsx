@@ -16,13 +16,12 @@ function App(): React.JSX.Element {
                     UM COS420 with React Hooks and TypeScript
                 </h1>
             </header>
-            <hr></hr>
-            {/* <DoubleHalf></DoubleHalf> */}
-            <hr></hr>
-            <ChooseTeam></ChooseTeam>{" "}
-            {/* There was an merge conflict here for 11/2/2025, reminder for if any issues arise. */}
-            <hr></hr>
-            <ColoredBox></ColoredBox>
+            <hr />
+            <DoubleHalf />
+            <hr />
+            <ChooseTeam />
+            <hr />
+            <ColoredBox />
             <hr />
             <Counter />
             <hr />
